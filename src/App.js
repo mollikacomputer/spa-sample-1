@@ -1,21 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
-import Home from './Home/Home';
 import {Routes, Route} from 'react-router-dom';
-import About from './Pages/About';
-import Contact from './Pages/Contact';
-import Service from './Pages/Service';
 import Navbar from './Components/Navbar';
+import { publicRoute } from './Routes/publicRoute';
 
 function App() {
   return (
     <div className="App">
       <Navbar/>
       <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/about" element={<About/>} />
-        <Route path="/contact" element={<Contact/>} />
-        <Route path="/service" element={<Service/>} />
+        {
+        publicRoute.map(({ path, Component }, index) => (
+          <Route key={index} path={path} element={<Component />} />
+        ))
+        }
+        {/* {
+          publicRoute.map(
+            ({path, Component}, index) =>(
+              <Route key={index} path={path} element={<Component/>} />
+            )
+          )
+        } */}
       </Routes>
     </div>
   );
